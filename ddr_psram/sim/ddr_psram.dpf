@@ -1,0 +1,29 @@
+---
+# Note: The contents of this file are automatically generated.
+# Any changes made by hand may be overwritten.
+version: '0.2'
+work_dir: .
+design_root_dir: ../..
+simulations:
+  - name: tb_psram
+    options: '-top tb.tb_ddr_psram -L rtl -L tb -L model +acc+b -waves dump.mxd'
+source_files:
+  - language: verilog
+    path: ../../ddr_phy/rtl/ddr_phy_rtl.f
+    library_name: rtl
+    file_list: relative-to-file
+  - language: verilog
+    path: ../rtl/ddr_psram.sv
+    library_name: rtl
+  - language: verilog
+    path: ../tb/tb_ddr_psram.sv
+    library_name: tb
+  - language: verilog
+    path: ../../ddr_phy/model/ddr3.v
+    library_name: model
+    options: +define+den1024Mb -sv +incdir+ddr_phy/model +incdir+../../ddr_phy/model
+  - language: verilog
+    path: ../../ddr_phy/model/prim_sim.v
+    library_name: model
+library_search_paths:
+  - $STD_LIBS/ieee93
